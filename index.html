@@ -13,33 +13,34 @@
     }
 
     header {
-      padding: 40px 20px;
-      animation: fadeIn 1.5s ease;
+      padding: 60px 20px;
+      font-size: 50px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      animation: glowText 2s infinite alternate;
     }
 
-    header img {
-      width: 300px;
-      animation: glow 2s infinite alternate;
-    }
-
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 5px #0a2cff); }
-      to { filter: drop-shadow(0 0 20px #0a2cff); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-30px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #0a2cff; }
+      to { text-shadow: 0 0 25px #0a2cff; }
     }
 
     section {
       padding: 50px 20px;
-      animation: fadeUp 1s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s forwards;
     }
 
+    section:nth-child(2) { animation-delay: 0.5s; }
+    section:nth-child(3) { animation-delay: 1s; }
+    section:nth-child(4) { animation-delay: 1.5s; }
+
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     h2 {
@@ -86,10 +87,7 @@
 
 <body>
 
-<header>
-  <!-- LOGO HIER -->
-  <img src="logo.png" alt="PNR Motorsport Logo">
-</header>
+<header>PNR MOTORSPORT</header>
 
 <section>
   <h2>Über uns</h2>
