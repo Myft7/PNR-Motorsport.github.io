@@ -2,58 +2,117 @@
 <html>
 <head>
   <title>PNR Motorsport</title>
+
   <style>
     body {
-      background: linear-gradient(black, #111);
-      color: white;
-      font-family: Arial;
-      text-align: center;
       margin: 0;
+      font-family: Arial;
+      background: linear-gradient(black, #050a1a);
+      color: white;
+      text-align: center;
     }
 
     header {
-      background: red;
-      padding: 20px;
-      font-size: 30px;
-      font-weight: bold;
+      padding: 40px 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    header img {
+      width: 300px;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { filter: drop-shadow(0 0 5px #0a2cff); }
+      to { filter: drop-shadow(0 0 20px #0a2cff); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     section {
-      padding: 40px;
+      padding: 50px 20px;
+      animation: fadeUp 1s ease;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
-      color: red;
+      color: #3b5bff;
     }
 
     .card {
-      background: #1a1a1a;
+      background: #0a0f2a;
       margin: 20px auto;
       padding: 20px;
       width: 300px;
-      border-radius: 10px;
+      border-radius: 12px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 20px #1a3cff;
+    }
+
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      text-decoration: none;
+      color: white;
+      background: #1a3cff;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .buttons a:hover {
+      background: #0a2cff;
+      transform: scale(1.1);
+    }
+
+    footer {
+      padding: 20px;
+      font-size: 14px;
+      opacity: 0.7;
     }
   </style>
 </head>
+
 <body>
 
-<header>🏁 PNR Motorsport</header>
+<header>
+  <!-- LOGO HIER -->
+  <img src="logo.png" alt="PNR Motorsport Logo">
+</header>
 
 <section>
   <h2>Über uns</h2>
-  <p>Wir sind ein Simracing Team 🚗💨</p>
+  <p>PNR Motorsport ist ein Simracing Team mit Fokus auf Performance und Leidenschaft 🏎️</p>
 </section>
 
 <section>
   <h2>Team</h2>
-  <div class="card">Fahrer 1</div>
-  <div class="card">Fahrer 2</div>
+  <div class="card">Owner: Noah Sejay</div>
 </section>
 
 <section>
-  <h2>Kontakt</h2>
-  <p>Discord: coming soon</p>
+  <h2>Join Us</h2>
+  <div class="buttons">
+    <a href="https://discord.gg/TXhqstemqD" target="_blank">Discord</a>
+    <a href="https://www.tiktok.com/@gt3hub_motorsport" target="_blank">TikTok</a>
+    <a href="https://www.instagram.com/pnrmotorsport2026/" target="_blank">Instagram</a>
+  </div>
 </section>
+
+<footer>
+  © 2026 PNR Motorsport
+</footer>
 
 </body>
 </html>
