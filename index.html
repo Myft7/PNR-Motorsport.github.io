@@ -1,173 +1,222 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PNR Motorsport</title>
+<title>PNR Motorsport</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial;
-      color: white;
-      background: black;
-      overflow-x: hidden;
-    }
+<style>
+body {
+  margin:0;
+  font-family:Arial;
+  background:black;
+  color:white;
+  overflow-x:hidden;
+}
 
-    .video-bg {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.15;
-      z-index: -2;
-    }
+/* GRID BACKGROUND */
+body::before {
+  content:"";
+  position:fixed;
+  width:200%;
+  height:200%;
+  background:
+    linear-gradient(rgba(59,91,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,91,255,0.08) 1px, transparent 1px);
+  background-size:60px 60px;
+  animation:moveGrid 40s linear infinite, pulse 4s ease-in-out infinite;
+  z-index:-2;
+}
 
-    body::after {
-      content: "";
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle, #0a2cff33, black);
-      z-index: -1;
-    }
+@keyframes moveGrid {
+  from {transform:translate(0,0);}
+  to {transform:translate(-300px,-300px);}
+}
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 60px;
-      backdrop-filter: blur(10px);
-      background: rgba(0,0,0,0.6);
-      position: sticky;
-      top: 0;
-    }
+@keyframes pulse {
+  0%,100% {opacity:0.6;}
+  50% {opacity:1;}
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 40px;
-    }
+/* GLOW */
+body::after {
+  content:"";
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:var(--glow);
+  z-index:-1;
+}
 
-    nav ul li {
-      cursor: pointer;
-    }
+/* NAV */
+nav {
+  display:flex;
+  justify-content:space-between;
+  padding:20px 60px;
+  background:rgba(0,0,0,0.7);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+}
 
-    nav ul li:hover {
-      color: #3b5bff;
-    }
+nav ul {
+  display:flex;
+  gap:40px;
+  list-style:none;
+}
 
-    .discord-btn {
-      background: linear-gradient(90deg, #0a2cff, #3b5bff);
-      padding: 10px 20px;
-      border-radius: 6px;
-      text-decoration: none;
-      color: white;
-    }
+nav li {
+  cursor:pointer;
+}
 
-    .hero {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding-left: 80px;
-    }
+nav li:hover {
+  color:#3b5bff;
+}
 
-    .hero h1 {
-      font-size: 70px;
-    }
+/* HERO */
+.hero {
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding-left:80px;
+}
 
-    section {
-      padding: 100px 20px;
-      text-align: center;
-    }
+.hero h1 {
+  font-size:70px;
+}
 
-    h2 {
-      color: #3b5bff;
-    }
+.btn {
+  margin-top:30px;
+  padding:15px 30px;
+  background:#3b5bff;
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+}
 
-    .card {
-      background: #0a0f2a;
-      margin: 20px auto;
-      padding: 25px;
-      width: 300px;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
+/* SECTIONS */
+section {
+  padding:100px 20px;
+  text-align:center;
+}
 
-    .card:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px #3b5bff;
-    }
+h2 {
+  color:#3b5bff;
+}
 
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 25px;
-      background: #3b5bff;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-    }
-  </style>
+/* CARDS */
+.card {
+  background:#0a0f2a;
+  margin:10px auto;
+  padding:20px;
+  width:300px;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.card:hover {
+  transform:scale(1.05);
+  box-shadow:0 0 20px #3b5bff;
+}
+
+</style>
 </head>
 
 <body>
-
-<video autoplay muted loop class="video-bg">
-  <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
-</video>
 
 <nav>
   <div><b>PNR MOTORSPORT</b></div>
 
   <ul>
-    <li onclick="scrollToSection('home')">HOME</li>
-    <li onclick="scrollToSection('team')">TEAM</li>
-    <li onclick="scrollToSection('contact')">CONTACT</li>
+    <li onclick="go('home')">HOME</li>
+    <li onclick="go('racing')">RACING</li>
+    <li onclick="go('teams')">TEAMS</li>
+    <li onclick="go('drivers')">DRIVERS</li>
+    <li onclick="go('contact')">CONTACT</li>
   </ul>
-
-  <a class="discord-btn" href="https://discord.gg/TXhqstemqD">JOIN</a>
 </nav>
 
-<!-- HERO -->
+<!-- HOME -->
 <div class="hero" id="home">
-  <h1>THE ONLY WAY IS UP</h1>
-  <p>PNR Motorsport – pushing limits in simracing.</p>
+  <h1>PNR MOTORSPORT</h1>
+  <p>Elite Simracing Team</p>
+
+  <a class="btn" href="https://discord.gg/TXhqstemqD">JOIN DISCORD</a>
 </div>
 
-<!-- RACING INFOS -->
-<section>
+<!-- RACING -->
+<section id="racing">
   <h2>Racing Infos</h2>
-  <div class="card">Assetto Corsa Competizione (ACC)</div>
-  <div class="card">Le Mans Ultimate (LMU)</div>
+
+  <div class="card">Assetto Corsa Competizione</div>
+  <div class="card">Le Mans Ultimate</div>
   <div class="card">Langstrecken Events</div>
+</section>
+
+<!-- TEAMS -->
+<section id="teams">
+  <h2>Teams</h2>
+
+  <h3>ACC</h3>
+  <div class="card">Team 1</div>
+  <div class="card">Team 2</div>
+  <div class="card">Team 3</div>
+  <div class="card">Team 4</div>
+  <div class="card">Academy</div>
+
+  <h3>LMU</h3>
+  <div class="card">Team 1</div>
+  <div class="card">Team 2</div>
+  <div class="card">Team 3</div>
+  <div class="card">Team 4</div>
+  <div class="card">Academy</div>
+</section>
+
+<!-- DRIVERS -->
+<section id="drivers">
+  <h2>Drivers</h2>
+
+  <div class="card">
+    <h3>Noah Sejay</h3>
+    <p>Wins: 12</p>
+    <p>Laps: 3500</p>
+    <p>Pace: Elite</p>
+  </div>
+
+  <div class="card">
+    <h3>Driver 2</h3>
+    <p>Wins: 5</p>
+    <p>Laps: 2000</p>
+    <p>Pace: Pro</p>
+  </div>
 </section>
 
 <!-- PARTNER -->
 <section>
   <h2>Partnerschaften</h2>
-  <div class="card">Liqui Moly</div>
-  <div class="card">Weitere folgen...</div>
+  <div class="card">Coming Soon</div>
 </section>
 
-<!-- TEAM -->
-<section id="team">
-  <h2>Team</h2>
-  <div class="card">Owner: Noah Sejay</div>
-</section>
-
-<!-- CONTACT (MIT SOCIALS) -->
+<!-- CONTACT -->
 <section id="contact">
   <h2>Contact / Socials</h2>
 
-  <a class="btn" href="https://discord.gg/TXhqstemqD">Discord</a>
   <a class="btn" href="https://www.tiktok.com/@gt3hub_motorsport">TikTok</a>
   <a class="btn" href="https://www.instagram.com/pnrmotorsport2026/">Instagram</a>
 </section>
 
 <script>
-function scrollToSection(id) {
-  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+function go(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
+
+/* MOUSE GLOW */
+document.addEventListener("mousemove",(e)=>{
+  let x=(e.clientX/window.innerWidth)*100;
+  let y=(e.clientY/window.innerHeight)*100;
+  document.body.style.setProperty("--glow",
+    `radial-gradient(circle at ${x}% ${y}%, rgba(10,44,255,0.2), transparent)`
+  );
+});
 </script>
 
 </body>
