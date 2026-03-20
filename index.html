@@ -3,13 +3,15 @@
 <head>
 <title>PNR Motorsport</title>
 
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
 body{
   margin:0;
-  font-family:Arial;
-  background: radial-gradient(circle at top, #0a0f2a, #000);
+  font-family:'Inter', sans-serif;
+  background:#020617;
   color:white;
-  overflow-x:hidden;
 }
 
 /* NAV */
@@ -17,8 +19,7 @@ nav{
   display:flex;
   justify-content:space-between;
   padding:20px 60px;
-  background:rgba(0,0,0,0.5);
-  backdrop-filter:blur(10px);
+  background:#020617;
 }
 
 nav ul{
@@ -29,11 +30,6 @@ nav ul{
 
 nav li{
   cursor:pointer;
-  transition:0.3s;
-}
-
-nav li:hover{
-  color:#00ff88;
 }
 
 /* HERO */
@@ -46,103 +42,83 @@ nav li:hover{
 }
 
 .hero h1{
-  font-size:100px;
-  text-shadow:0 0 25px #3b5bff;
-  transition:0.3s;
+  font-size:90px;
+  font-weight:900;
 }
 
-.hero h1:hover{
-  transform:scale(1.1);
+.hero span{
+  color:#3b5bff;
 }
 
 .hero p{
   opacity:0.6;
 }
 
-/* SECTION */
+/* TITLES */
+h2{
+  font-size:50px;
+  font-weight:900;
+  margin-bottom:40px;
+}
+
+/* TEAM SECTION */
+.team-section{
+  background:white;
+  color:black;
+  padding:100px 20px;
+  text-align:center;
+}
+
+/* GRID */
+.team-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  justify-content:center;
+}
+
+/* CARD */
+.team-box{
+  width:260px;
+  padding:20px;
+  border-radius:10px;
+  background:#f1f5f9;
+  text-align:left;
+}
+
+/* TITLE */
+.team-box h3{
+  font-size:18px;
+  font-weight:700;
+}
+
+/* DRIVERS */
+.driver{
+  margin-top:10px;
+  opacity:0.7;
+}
+
+/* TAG */
+.tag{
+  margin-top:15px;
+  font-size:12px;
+  opacity:0.6;
+}
+
+/* CONTACT */
 section{
   padding:100px 20px;
   text-align:center;
 }
 
-/* TITLES */
-h2{
-  font-size:40px;
-  text-shadow:0 0 15px #3b5bff;
-  transition:0.3s;
-}
-
-h2:hover{
-  transform:scale(1.1);
-  color:#00ff88;
-}
-
-/* TEAM GRID */
-.team-grid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:30px;
-  justify-content:center;
-}
-
-/* GLASS CARD */
-.team-box{
-  width:260px;
-  padding:25px;
-  border-radius:15px;
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(15px);
-  border:1px solid rgba(59,91,255,0.3);
-  transition:0.3s;
-}
-
-.team-box:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 30px #3b5bff;
-}
-
-/* ACADEMY */
-.academy{
-  border:1px solid #00ff88;
-}
-
-.academy:hover{
-  box-shadow:0 0 30px #00ff88;
-}
-
 /* BUTTON */
 .btn{
-  padding:15px 30px;
-  background:linear-gradient(90deg,#3b5bff,#00ff88);
-  border:none;
+  padding:12px 25px;
+  background:#3b5bff;
   color:white;
-  cursor:pointer;
-  margin-top:20px;
-  display:inline-block;
   text-decoration:none;
-  transition:0.3s;
-}
-
-.btn:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 20px #00ff88;
-}
-
-/* CONTACT */
-.contact{
-  display:flex;
-}
-
-.box{
-  width:50%;
-  padding:80px;
-  backdrop-filter:blur(20px);
-  background:rgba(255,255,255,0.05);
-  transition:0.3s;
-}
-
-.box:hover{
-  transform:scale(1.03);
+  display:inline-block;
+  margin-top:20px;
 }
 
 /* FOOTER */
@@ -159,13 +135,7 @@ footer h3{
 
 footer p{
   opacity:0.6;
-  cursor:pointer;
 }
-
-footer p:hover{
-  color:#00ff88;
-}
-
 </style>
 </head>
 
@@ -177,66 +147,112 @@ footer p:hover{
   <ul>
     <li onclick="go('home')">HOME</li>
     <li onclick="go('teams')">TEAM</li>
-    <li onclick="go('results')">RESULTS</li>
     <li onclick="go('contact')">CONTACT</li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <div class="hero" id="home">
-  <h1>PNR MOTORSPORT</h1>
+  <h1><span>PNR</span> MOTORSPORT</h1>
   <p>Simracing Team</p>
 </div>
 
-<!-- TEAMS -->
-<section id="teams">
-  <h2>TEAM</h2>
+<!-- TEAM -->
+<section class="team-section" id="teams">
 
-  <div class="team-grid">
+<h2>TEAM</h2>
 
-    <!-- ACC -->
-    <div class="team-box">ACC Team 1</div>
-    <div class="team-box">ACC Team 2</div>
-    <div class="team-box">ACC Team 3</div>
-    <div class="team-box academy">ACC Team 4 [Academy]</div>
+<!-- ACC -->
+<h3>ACC</h3>
+<div class="team-grid">
 
-    <!-- LMU -->
-    <div class="team-box">LMU Team 1</div>
-    <div class="team-box">LMU Team 2</div>
-    <div class="team-box">LMU Team 3</div>
-    <div class="team-box academy">LMU Team 4 [Academy]</div>
+<div class="team-box">
+  <h3>Team 1</h3>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="tag">GT3</div>
+</div>
 
-  </div>
-</section>
+<div class="team-box">
+  <h3>Team 2</h3>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="tag">GT3</div>
+</div>
 
-<!-- RESULTS -->
-<section id="results">
-  <h2>Podiums & Poles</h2>
+<div class="team-box">
+  <h3>Team 3</h3>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="tag">GT3</div>
+</div>
+
+<div class="team-box">
+  <h3>Team 4 [Academy]</h3>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="tag">GT3</div>
+</div>
+
+</div>
+
+<!-- LMU -->
+<h3 style="margin-top:60px;">LMU</h3>
+<div class="team-grid">
+
+<div class="team-box">
+  <h3>Team 1</h3>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="tag">GT3</div>
+</div>
+
+<div class="team-box">
+  <h3>Team 2</h3>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="tag">GT3</div>
+</div>
+
+<div class="team-box">
+  <h3>Team 3</h3>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="tag">GT3</div>
+</div>
+
+<div class="team-box">
+  <h3>Team 4 [Academy]</h3>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="driver">-</div>
+  <div class="tag">GT3</div>
+</div>
+
+</div>
+
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-<div class="contact">
+  <h2>CONTACT</h2>
 
-  <div class="box">
-    <h2>JOIN THE TEAM</h2>
-    <p>Apply via Discord and become part of PNR Motorsport.</p>
-
-    <a class="btn" href="https://discord.gg/TXhqstemqD">
-      APPLY ON DISCORD
-    </a>
-  </div>
-
-  <div class="box">
-    <h2>CONTACT US</h2>
-    <p>Follow us on Social Media</p>
-
-    <a class="btn" href="https://www.instagram.com/pnrmotorsport2026/">INSTAGRAM</a>
-    <br><br>
-    <a class="btn" href="https://www.tiktok.com/@gt3hub_motorsport">TIKTOK</a>
-  </div>
-
-</div>
+  <a class="btn" href="https://discord.gg/TXhqstemqD">JOIN DISCORD</a>
 </section>
 
 <!-- FOOTER -->
