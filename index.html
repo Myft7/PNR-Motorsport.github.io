@@ -8,30 +8,37 @@
       margin: 0;
       font-family: Arial;
       color: white;
-      overflow-x: hidden;
       background: black;
+      overflow-x: hidden;
     }
 
-    /* ANIMIERTER HINTERGRUND */
+    /* ANIMIERTER GRID BACKGROUND */
     body::before {
       content: "";
       position: fixed;
       width: 200%;
       height: 200%;
-      background: repeating-linear-gradient(
-        45deg,
-        #0a0f2a 0px,
-        #0a0f2a 2px,
-        transparent 2px,
-        transparent 40px
-      );
-      animation: moveBg 20s linear infinite;
-      z-index: -1;
+      background:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: moveBg 25s linear infinite;
+      z-index: -2;
     }
 
     @keyframes moveBg {
-      from { transform: translate(0, 0); }
-      to { transform: translate(-200px, -200px); }
+      from { transform: translate(0,0); }
+      to { transform: translate(-200px,-200px); }
+    }
+
+    /* GLOW OVERLAY */
+    body::after {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #0a2cff33, transparent);
+      z-index: -1;
     }
 
     /* NAVBAR */
@@ -39,98 +46,138 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 50px;
-      background: rgba(0,0,0,0.8);
+      padding: 20px 60px;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,0.6);
       position: sticky;
       top: 0;
+      z-index: 10;
     }
 
     nav .logo {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 22px;
+      letter-spacing: 2px;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 30px;
+      gap: 40px;
     }
 
     nav ul li {
       cursor: pointer;
+      position: relative;
+    }
+
+    nav ul li::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #3b5bff;
+      bottom: -5px;
+      left: 0;
       transition: 0.3s;
     }
 
-    nav ul li:hover {
-      color: #3b5bff;
+    nav ul li:hover::after {
+      width: 100%;
     }
 
     .discord-btn {
       background: linear-gradient(90deg, #0a2cff, #3b5bff);
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 6px;
       text-decoration: none;
       color: white;
+      font-weight: bold;
       transition: 0.3s;
     }
 
     .discord-btn:hover {
       transform: scale(1.1);
+      box-shadow: 0 0 20px #3b5bff;
     }
 
     /* HERO */
     .hero {
-      padding: 120px 50px;
-      text-align: left;
+      padding: 150px 80px;
     }
 
     .hero h1 {
-      font-size: 60px;
+      font-size: 70px;
       margin-bottom: 20px;
-      animation: fadeIn 1.5s ease;
+      animation: fadeUp 1.5s ease;
     }
 
     .hero p {
       max-width: 500px;
       opacity: 0.8;
+      animation: fadeUp 2s ease;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(40px); }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(50px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* BUTTON */
-    .join {
+    .join-btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 15px 30px;
+      margin-top: 40px;
+      padding: 15px 35px;
       background: #3b5bff;
-      color: white;
-      text-decoration: none;
       border-radius: 6px;
+      text-decoration: none;
+      color: white;
       transition: 0.3s;
     }
 
-    .join:hover {
-      background: #0a2cff;
+    .join-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #3b5bff;
+    }
+
+    /* JOIN SECTION BIG */
+    .join-section {
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #0a2cff22, black);
+    }
+
+    .join-section h1 {
+      font-size: 60px;
+      margin-bottom: 30px;
+    }
+
+    .apply-btn {
+      padding: 20px 40px;
+      background: white;
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .apply-btn:hover {
       transform: scale(1.1);
     }
 
-    /* SECTION */
+    /* CARDS */
     section {
-      padding: 80px 20px;
+      padding: 100px 20px;
       text-align: center;
-    }
-
-    h2 {
-      color: #3b5bff;
     }
 
     .card {
       background: #0a0f2a;
       margin: 20px auto;
-      padding: 20px;
+      padding: 25px;
       width: 300px;
       border-radius: 10px;
       transition: 0.3s;
@@ -138,21 +185,21 @@
 
     .card:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 20px #1a3cff;
+      box-shadow: 0 0 25px #3b5bff;
     }
+
   </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
 <nav>
   <div class="logo">PNR MOTORSPORT</div>
 
   <ul>
-    <li>Home</li>
-    <li>Team</li>
-    <li>Contact</li>
+    <li>HOME</li>
+    <li>TEAM</li>
+    <li>CONTACT</li>
   </ul>
 
   <a class="discord-btn" href="https://discord.gg/TXhqstemqD" target="_blank">
@@ -160,27 +207,23 @@
   </a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
-  <h1>PNR MOTORSPORT</h1>
-  <p>We aim for performance, passion and a strong simracing community.</p>
+  <h1>GROWING BEYOND OURSELVES</h1>
+  <p>We aim for performance, growth and a strong simracing community.</p>
 
-  <a class="join" href="https://discord.gg/TXhqstemqD" target="_blank">
-    JOIN THE TEAM
+  <a class="join-btn" href="https://discord.gg/TXhqstemqD">JOIN NOW</a>
+</div>
+
+<div class="join-section">
+  <h1>JOIN THE TEAM</h1>
+  <a class="apply-btn" href="https://discord.gg/TXhqstemqD">
+    APPLY ON DISCORD
   </a>
 </div>
 
-<!-- TEAM -->
 <section>
-  <h2>Team</h2>
+  <h2>TEAM</h2>
   <div class="card">Owner: Noah Sejay</div>
-</section>
-
-<!-- SOCIAL -->
-<section>
-  <h2>Socials</h2>
-  <a class="join" href="https://www.tiktok.com/@gt3hub_motorsport">TikTok</a>
-  <a class="join" href="https://www.instagram.com/pnrmotorsport2026/">Instagram</a>
 </section>
 
 </body>
