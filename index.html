@@ -9,6 +9,21 @@ body {
   font-family:Arial;
   background:black;
   color:white;
+  overflow-x:hidden;
+}
+
+/* LOADING SCREEN */
+#loader {
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+  font-size:30px;
+  letter-spacing:3px;
 }
 
 /* NAV */
@@ -17,6 +32,7 @@ nav {
   justify-content:space-between;
   padding:20px 60px;
   background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(10px);
 }
 
 nav ul {
@@ -25,20 +41,21 @@ nav ul {
   list-style:none;
 }
 
-nav li {
-  cursor:pointer;
-}
-
-nav li:hover {
-  color:#3b5bff;
-}
+nav li { cursor:pointer; }
+nav li:hover { color:#3b5bff; }
 
 .join {
   padding:12px 30px;
   background:#3b5bff;
   border-radius:6px;
-  text-decoration:none;
   color:white;
+  text-decoration:none;
+}
+
+/* DISCORD COUNTER */
+.counter {
+  font-size:12px;
+  opacity:0.7;
 }
 
 /* HERO */
@@ -50,102 +67,84 @@ nav li:hover {
   padding-left:80px;
 }
 
-.hero h1 {
-  font-size:70px;
+.hero h1 { font-size:70px; }
+
+/* FEATURED DRIVER */
+.featured {
+  text-align:center;
+  padding:80px;
+  background:rgba(10,15,42,0.5);
+  backdrop-filter:blur(10px);
 }
 
 /* SECTION */
 section {
   padding:100px 20px;
   text-align:center;
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s;
 }
 
-h2 {
-  color:#3b5bff;
+section.show {
+  opacity:1;
+  transform:translateY(0);
 }
 
-/* INFO TEXT */
-.info-text {
-  max-width:600px;
-  margin:auto;
-  opacity:0.8;
+/* CARDS */
+.card {
+  background:rgba(10,15,42,0.6);
+  backdrop-filter:blur(10px);
+  margin:20px auto;
+  padding:20px;
+  width:300px;
+  border-radius:12px;
+  border:1px solid rgba(59,91,255,0.3);
+  transition:0.3s;
 }
 
-/* TEAM BOX */
-.team-box {
-  background:#0a0f2a;
-  margin:30px auto;
-  padding:30px;
-  width:400px;
-  border-radius:10px;
+.card:hover {
+  box-shadow:0 0 20px #3b5bff;
 }
 
-/* DRIVER CARD */
+/* DRIVER */
 .driver-card {
   display:flex;
-  align-items:center;
   gap:15px;
-  background:rgba(10,15,42,0.8);
-  border:1px solid rgba(59,91,255,0.2);
+  background:rgba(10,15,42,0.6);
   padding:15px;
-  margin:10px auto;
+  margin:10px;
   border-radius:12px;
-  backdrop-filter:blur(10px);
+  border:1px solid rgba(59,91,255,0.3);
   transition:0.3s;
-  cursor:pointer;
 }
 
-/* HOVER */
 .driver-card:hover {
-  transform:translateY(-5px) scale(1.03);
-  box-shadow:0 0 20px rgba(59,91,255,0.6);
-  border:1px solid rgba(59,91,255,0.6);
+  transform:scale(1.05);
+  box-shadow:0 0 20px #3b5bff;
 }
 
-/* PFP */
 .pfp {
-  width:55px;
-  height:55px;
+  width:50px;
+  height:50px;
   border-radius:50%;
-  background:linear-gradient(135deg,#2a2a2a,#111);
+  background:#111;
   display:flex;
   align-items:center;
   justify-content:center;
 }
+.pfp::after { content:"👤"; }
 
-.pfp::after {
-  content:"👤";
-  opacity:0.7;
-}
-
-/* TEXT */
-.driver-info {
-  text-align:left;
-}
-
-/* POPUP */
-.popup {
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.8);
-  display:none;
-  justify-content:center;
-  align-items:center;
-}
-
-.popup-content {
-  background:#0a0f2a;
-  padding:30px;
-  border-radius:10px;
-}
+/* TEAM COLORS */
+.main { border-color:#3b5bff; }
+.academy { border-color:#555; }
 
 </style>
 </head>
 
 <body>
+
+<div id="loader">PNR MOTORSPORT</div>
 
 <nav>
   <div><b>PNR MOTORSPORT</b></div>
@@ -156,60 +155,56 @@ h2 {
     <li onclick="go('contact')">CONTACT</li>
   </ul>
 
-  <a class="join" href="https://discord.gg/TXhqstemqD">JOIN NOW</a>
+  <div>
+    <a class="join" href="https://discord.gg/TXhqstemqD">JOIN NOW</a>
+    <div class="counter">82 ONLINE • 480 MEMBERS</div>
+  </div>
 </nav>
 
-<!-- HOME -->
+<!-- HERO -->
 <div class="hero" id="home">
   <h1>PNR MOTORSPORT</h1>
   <p>Simracing Team</p>
 </div>
 
-<!-- INFO -->
-<section>
-  <h2>About Us</h2>
+<!-- FEATURED -->
+<div class="featured">
+  <h2>NOAH SEJAY</h2>
+  <p>Team Owner • 🇪🇸 Spain</p>
+</div>
 
-  <p class="info-text">
-    PNR Motorsport was founded in 2026.  
-    We compete in Assetto Corsa Competizione and Le Mans Ultimate.  
-    Our focus is endurance racing and building a strong esports team.
-  </p>
+<!-- RACING -->
+<section>
+  <h2>Racing</h2>
+  <div class="card">Assetto Corsa Competizione</div>
+  <div class="card">Le Mans Ultimate</div>
 </section>
 
 <!-- TEAMS -->
 <section id="teams">
   <h2>Teams</h2>
 
-  <div class="team-box">
+  <div class="card main">
     <h3>Team 1</h3>
 
-    <div class="driver-card" onclick="openProfile('Driver 1')">
+    <div class="driver-card">
       <div class="pfp"></div>
-      <div class="driver-info">
-        <b>Driver 1</b><br>
-        Spain 🇪🇸
-      </div>
+      <div>Driver 1 🇪🇸</div>
     </div>
 
-    <div class="driver-card" onclick="openProfile('Driver 2')">
+    <div class="driver-card">
       <div class="pfp"></div>
-      <div class="driver-info">
-        <b>Driver 2</b><br>
-        Germany 🇩🇪
-      </div>
+      <div>Driver 2 🇩🇪</div>
     </div>
 
   </div>
 
-  <div class="team-box">
-    <h3>Team 2</h3>
+  <div class="card academy">
+    <h3>Academy</h3>
 
-    <div class="driver-card" onclick="openProfile('Driver 3')">
+    <div class="driver-card">
       <div class="pfp"></div>
-      <div class="driver-info">
-        <b>Driver 3</b><br>
-        France 🇫🇷
-      </div>
+      <div>Driver 3 🇫🇷</div>
     </div>
 
   </div>
@@ -220,35 +215,30 @@ h2 {
 <section id="contact">
   <h2>Contact</h2>
 
-  <p>Join our Discord:</p>
   <a class="join" href="https://discord.gg/TXhqstemqD">JOIN NOW</a>
-
-  <p>Follow us:</p>
-  <a class="join" href="https://www.tiktok.com/@gt3hub_motorsport">TikTok</a>
-  <a class="join" href="https://www.instagram.com/pnrmotorsport2026/">Instagram</a>
 </section>
 
-<!-- POPUP -->
-<div class="popup" id="popup">
-  <div class="popup-content" id="popupContent"></div>
-</div>
-
 <script>
+/* LOADER */
+window.onload = () => {
+  document.getElementById("loader").style.display="none";
+};
+
+/* SCROLL ANIMATION */
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", ()=>{
+  sections.forEach(sec=>{
+    const top = sec.getBoundingClientRect().top;
+    if(top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+/* NAV SCROLL */
 function go(id){
   document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
-
-function openProfile(name){
-  document.getElementById("popup").style.display="flex";
-  document.getElementById("popupContent").innerHTML=`
-    <h2>${name}</h2>
-    <p>Profile</p>
-  `;
-}
-
-document.getElementById("popup").onclick=()=>{
-  document.getElementById("popup").style.display="none";
-};
 </script>
 
 </body>
