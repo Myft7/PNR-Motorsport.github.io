@@ -12,7 +12,7 @@ body{
   overflow-x:hidden;
 }
 
-/* GRID BACKGROUND */
+/* GRID */
 body::before{
   content:"";
   position:fixed;
@@ -29,16 +29,6 @@ body::before{
 @keyframes move{
   from{transform:translate(0,0);}
   to{transform:translate(-300px,-300px);}
-}
-
-/* MOUSE GLOW */
-body::after{
-  content:"";
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:var(--glow);
-  z-index:-1;
 }
 
 /* NAV */
@@ -58,131 +48,75 @@ nav ul{
 
 nav li{
   cursor:pointer;
-  opacity:0.8;
   transition:0.3s;
 }
 
 nav li:hover{
   color:#3b5bff;
-  opacity:1;
-}
-
-.join{
-  padding:12px 30px;
-  background:linear-gradient(90deg,#3b5bff,#6a00ff);
-  border-radius:6px;
-  text-decoration:none;
-  color:white;
 }
 
 /* HERO */
 .hero{
   height:90vh;
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
-  text-align:center;
+  flex-direction:column;
 }
 
 .hero h1{
-  font-size:90px;
+  font-size:100px;
+  text-shadow:0 0 20px #3b5bff;
   transition:0.3s;
 }
 
 .hero h1:hover{
   transform:scale(1.1);
-  color:#3b5bff;
 }
 
 .hero p{
   opacity:0.6;
 }
 
-/* SECTION */
+/* SECTIONS */
 section{
   padding:100px 20px;
-  opacity:0;
-  transform:translateY(50px);
-  transition:1s;
-}
-
-section.show{
-  opacity:1;
-  transform:translateY(0);
+  text-align:center;
 }
 
 /* TITLES */
 h2{
-  text-align:center;
+  font-size:40px;
+  text-shadow:0 0 15px #3b5bff;
   transition:0.3s;
 }
 
 h2:hover{
   transform:scale(1.1);
-  color:#3b5bff;
 }
 
-/* INFO */
-.split{
-  display:flex;
-  justify-content:space-between;
-  max-width:1200px;
-  margin:auto;
-}
-
-.left{
-  max-width:500px;
-  font-size:18px;
-  transition:0.3s;
-}
-
-.left:hover{
-  transform:scale(1.05);
-  color:#3b5bff;
-}
-
-.left h2{
-  color:#3b5bff;
-}
-
-.right{
-  font-size:40px;
-  opacity:0.7;
-}
-
-/* TEAM */
+/* TEAM GRID */
 .team-grid{
   display:flex;
+  flex-wrap:wrap;
   gap:30px;
   justify-content:center;
-  flex-wrap:wrap;
 }
 
+/* GLASS BOX */
 .team-box{
-  width:280px;
-  padding:30px;
-  background:rgba(10,15,42,0.6);
-  backdrop-filter:blur(10px);
+  width:260px;
+  padding:25px;
+  border-radius:15px;
+  background:rgba(10,15,42,0.4);
+  backdrop-filter:blur(15px);
   border:1px solid rgba(59,91,255,0.3);
-  border-radius:12px;
   transition:0.3s;
 }
 
 .team-box:hover{
-  transform:scale(1.07);
-  box-shadow:0 0 25px #3b5bff;
-}
-
-.team-box h3{
-  text-align:center;
-}
-
-.tag{
-  border:1px solid rgba(255,255,255,0.2);
-  padding:5px 10px;
-  display:inline-block;
-  margin-top:10px;
+  transform:scale(1.08);
+  box-shadow:0 0 30px #3b5bff;
 }
 
 /* ACADEMY */
@@ -191,7 +125,25 @@ h2:hover{
 }
 
 .academy:hover{
-  box-shadow:0 0 25px orange;
+  box-shadow:0 0 30px orange;
+}
+
+/* BUTTON */
+.btn{
+  padding:15px 30px;
+  background:linear-gradient(90deg,#3b5bff,#00d4ff);
+  border:none;
+  color:white;
+  cursor:pointer;
+  margin-top:20px;
+  display:inline-block;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px #3b5bff;
 }
 
 /* CONTACT */
@@ -202,38 +154,36 @@ h2:hover{
 .box{
   width:50%;
   padding:80px;
+  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,0.05);
   transition:0.3s;
 }
 
 .box:hover{
   transform:scale(1.03);
-  filter:brightness(1.2);
 }
 
-.blue{
-  background:linear-gradient(135deg,#0a1cff,#000);
+/* FOOTER */
+footer{
+  padding:60px;
+  background:#020617;
+  display:flex;
+  justify-content:space-around;
 }
 
-.green{
-  background:linear-gradient(135deg,#00ff88,#000);
+footer h3{
+  margin-bottom:10px;
 }
 
-/* BUTTON */
-.btn{
-  display:inline-block;
-  margin-top:20px;
-  padding:12px 25px;
-  background:white;
-  color:black;
-  text-decoration:none;
+footer p{
+  opacity:0.6;
+  cursor:pointer;
 }
 
-/* DISCORD COUNTER */
-.counter{
-  margin-top:10px;
-  font-size:12px;
-  opacity:0.7;
+footer p:hover{
+  color:#3b5bff;
 }
+
 </style>
 </head>
 
@@ -248,8 +198,6 @@ h2:hover{
     <li onclick="go('results')">RESULTS</li>
     <li onclick="go('contact')">CONTACT</li>
   </ul>
-
-  <a class="join" href="https://discord.gg/TXhqstemqD">JOIN DISCORD</a>
 </nav>
 
 <!-- HERO -->
@@ -258,40 +206,21 @@ h2:hover{
   <p>Simracing Team</p>
 </div>
 
-<!-- INFO -->
-<section>
-  <div class="split">
-
-    <div class="left">
-      <h2>INFO</h2>
-      <p>
-        Founded in 2026, PNR Motorsport competes in Assetto Corsa Competizione  
-        and Le Mans Ultimate focusing on endurance racing and performance.
-      </p>
-    </div>
-
-    <div class="right">
-      PNR MOTORSPORT
-    </div>
-
-  </div>
-</section>
-
 <!-- TEAMS -->
 <section id="teams">
   <h2>TEAM</h2>
 
   <div class="team-grid">
 
-    <!-- ACC -->
-    <div class="team-box"><h3>ACC Team 1</h3><p>-</p><div class="tag">GT3 Car</div></div>
-    <div class="team-box"><h3>ACC Team 2</h3><p>-</p><div class="tag">GT3 Car</div></div>
-    <div class="team-box"><h3>ACC Team 3</h3><p>-</p><div class="tag">GT3 Car</div></div>
-    <div class="team-box academy"><h3>ACC Team 4 [Academy]</h3><p>-</p><div class="tag">GT3 Car</div></div>
+    <div class="team-box">ACC Team 1</div>
+    <div class="team-box">ACC Team 2</div>
+    <div class="team-box">ACC Team 3</div>
+    <div class="team-box academy">ACC Team 4 [Academy]</div>
 
-    <!-- LMU -->
-    <div class="team-box"><h3>LMU Team 1</h3><p>-</p><div class="tag">GT3 Car</div></div>
-    <div class="team-box"><h3>LMU Team 2</h3><p>-</p><div class="tag">GT3 Car</div></div>
+    <div class="team-box">LMU Team 1</div>
+    <div class="team-box">LMU Team 2</div>
+    <div class="team-box">LMU Team 3</div>
+    <div class="team-box">LMU Team 4</div>
 
   </div>
 </section>
@@ -305,56 +234,48 @@ h2:hover{
 <section id="contact">
 <div class="contact">
 
-  <div class="box blue">
+  <div class="box">
     <h2>JOIN THE TEAM</h2>
     <p>Apply via Discord and become part of PNR Motorsport.</p>
 
     <a class="btn" href="https://discord.gg/TXhqstemqD">
       APPLY ON DISCORD
     </a>
-
-    <div class="counter">● 82 ONLINE • 480 MEMBERS</div>
   </div>
 
-  <div class="box green">
+  <div class="box">
     <h2>CONTACT US</h2>
     <p>Follow us on Social Media</p>
 
     <a class="btn" href="https://www.instagram.com/pnrmotorsport2026/">INSTAGRAM</a>
-    <br>
+    <br><br>
     <a class="btn" href="https://www.tiktok.com/@gt3hub_motorsport">TIKTOK</a>
   </div>
 
 </div>
 </section>
 
+<!-- FOOTER -->
+<footer>
+
+  <div>
+    <h3>Social</h3>
+    <p>Discord</p>
+    <p>Instagram</p>
+    <p>TikTok</p>
+  </div>
+
+  <div>
+    <h3>Notes</h3>
+    <p>© 2026 PNR Motorsport</p>
+  </div>
+
+</footer>
+
 <script>
-
-/* SCROLL */
-const sections = document.querySelectorAll("section");
-window.addEventListener("scroll",()=>{
-  sections.forEach(sec=>{
-    if(sec.getBoundingClientRect().top < window.innerHeight-100){
-      sec.classList.add("show");
-    }
-  });
-});
-
-/* NAV */
 function go(id){
   document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
-
-/* MOUSE EFFECT */
-document.addEventListener("mousemove",(e)=>{
-  let x=(e.clientX/window.innerWidth)*100;
-  let y=(e.clientY/window.innerHeight)*100;
-
-  document.body.style.setProperty("--glow",
-    `radial-gradient(circle at ${x}% ${y}%, rgba(59,91,255,0.2), transparent)`
-  );
-});
-
 </script>
 
 </body>
