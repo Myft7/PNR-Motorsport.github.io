@@ -36,16 +36,6 @@ body::before {
   50% {opacity:1;}
 }
 
-/* GLOW */
-body::after {
-  content:"";
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:var(--glow);
-  z-index:-1;
-}
-
 /* NAV */
 nav {
   display:flex;
@@ -71,6 +61,14 @@ nav li:hover {
   color:#3b5bff;
 }
 
+.btn {
+  padding:10px 20px;
+  background:#3b5bff;
+  border-radius:6px;
+  text-decoration:none;
+  color:white;
+}
+
 /* HERO */
 .hero {
   height:100vh;
@@ -84,16 +82,7 @@ nav li:hover {
   font-size:70px;
 }
 
-.btn {
-  margin-top:30px;
-  padding:15px 30px;
-  background:#3b5bff;
-  color:white;
-  text-decoration:none;
-  border-radius:6px;
-}
-
-/* SECTIONS */
+/* SECTION */
 section {
   padding:100px 20px;
   text-align:center;
@@ -103,19 +92,79 @@ h2 {
   color:#3b5bff;
 }
 
-/* CARDS */
-.card {
-  background:#0a0f2a;
-  margin:10px auto;
-  padding:20px;
-  width:300px;
-  border-radius:10px;
-  transition:0.3s;
+/* DRIVER GRID */
+.driver-grid {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
 }
 
-.card:hover {
-  transform:scale(1.05);
+/* DRIVER CARD */
+.driver {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:#0a0f2a;
+  padding:15px 20px;
+  width:250px;
+  border-radius:10px;
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.driver:hover {
+  transform:translateY(-5px) scale(1.05);
   box-shadow:0 0 20px #3b5bff;
+}
+
+/* PFP */
+.pfp {
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#1a2cff,#0a0f2a);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.pfp::after {
+  content:"👤";
+}
+
+/* POPUP */
+.popup {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  display:none;
+  justify-content:center;
+  align-items:center;
+}
+
+.popup-content {
+  background:#0a0f2a;
+  padding:30px;
+  border-radius:10px;
+  width:300px;
+  text-align:center;
+}
+
+/* STATS BAR */
+.bar {
+  background:#222;
+  border-radius:5px;
+  margin:10px 0;
+}
+
+.fill {
+  background:#3b5bff;
+  height:10px;
+  border-radius:5px;
 }
 
 </style>
@@ -128,95 +177,95 @@ h2 {
 
   <ul>
     <li onclick="go('home')">HOME</li>
-    <li onclick="go('racing')">RACING</li>
     <li onclick="go('teams')">TEAMS</li>
-    <li onclick="go('drivers')">DRIVERS</li>
     <li onclick="go('contact')">CONTACT</li>
   </ul>
+
+  <a class="btn" href="https://discord.gg/TXhqstemqD">JOIN</a>
 </nav>
 
-<!-- HOME -->
+<!-- HERO -->
 <div class="hero" id="home">
   <h1>PNR MOTORSPORT</h1>
   <p>Elite Simracing Team</p>
-
-  <a class="btn" href="https://discord.gg/TXhqstemqD">JOIN DISCORD</a>
 </div>
-
-<!-- RACING -->
-<section id="racing">
-  <h2>Racing Infos</h2>
-
-  <div class="card">Assetto Corsa Competizione</div>
-  <div class="card">Le Mans Ultimate</div>
-  <div class="card">Langstrecken Events</div>
-</section>
 
 <!-- TEAMS -->
 <section id="teams">
   <h2>Teams</h2>
 
-  <h3>ACC</h3>
-  <div class="card">Team 1</div>
-  <div class="card">Team 2</div>
-  <div class="card">Team 3</div>
-  <div class="card">Team 4</div>
-  <div class="card">Academy</div>
+  <div class="driver-grid">
 
-  <h3>LMU</h3>
-  <div class="card">Team 1</div>
-  <div class="card">Team 2</div>
-  <div class="card">Team 3</div>
-  <div class="card">Team 4</div>
-  <div class="card">Academy</div>
-</section>
+    <div class="driver" onclick="openProfile('Noah Sejay','ES',80,90,70)">
+      <div class="pfp"></div>
+      <div>
+        <b>Noah Sejay</b><br>
+        <span class="flag" data-country="ES"></span>
+      </div>
+    </div>
 
-<!-- DRIVERS -->
-<section id="drivers">
-  <h2>Drivers</h2>
+    <div class="driver" onclick="openProfile('Driver 2','DE',60,70,50)">
+      <div class="pfp"></div>
+      <div>
+        <b>Driver 2</b><br>
+        <span class="flag" data-country="DE"></span>
+      </div>
+    </div>
 
-  <div class="card">
-    <h3>Noah Sejay</h3>
-    <p>Wins: 12</p>
-    <p>Laps: 3500</p>
-    <p>Pace: Elite</p>
   </div>
-
-  <div class="card">
-    <h3>Driver 2</h3>
-    <p>Wins: 5</p>
-    <p>Laps: 2000</p>
-    <p>Pace: Pro</p>
-  </div>
-</section>
-
-<!-- PARTNER -->
-<section>
-  <h2>Partnerschaften</h2>
-  <div class="card">Coming Soon</div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2>Contact / Socials</h2>
-
+  <h2>Contact</h2>
   <a class="btn" href="https://www.tiktok.com/@gt3hub_motorsport">TikTok</a>
   <a class="btn" href="https://www.instagram.com/pnrmotorsport2026/">Instagram</a>
 </section>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+  <div class="popup-content" id="popupContent"></div>
+</div>
 
 <script>
 function go(id){
   document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-/* MOUSE GLOW */
-document.addEventListener("mousemove",(e)=>{
-  let x=(e.clientX/window.innerWidth)*100;
-  let y=(e.clientY/window.innerHeight)*100;
-  document.body.style.setProperty("--glow",
-    `radial-gradient(circle at ${x}% ${y}%, rgba(10,44,255,0.2), transparent)`
+/* FLAG SYSTEM */
+document.querySelectorAll(".flag").forEach(el=>{
+  let code = el.dataset.country.toLowerCase();
+  el.textContent = String.fromCodePoint(
+    ...[...code].map(c => 127397 + c.charCodeAt())
   );
 });
+
+/* PROFILE POPUP */
+function openProfile(name,country,wins,laps,pace){
+  let flag = String.fromCodePoint(
+    ...[...country.toLowerCase()].map(c => 127397 + c.charCodeAt())
+  );
+
+  document.getElementById("popup").style.display="flex";
+  document.getElementById("popupContent").innerHTML=`
+    <h2>${name}</h2>
+    <p>${flag}</p>
+
+    <p>Wins</p>
+    <div class="bar"><div class="fill" style="width:${wins}%"></div></div>
+
+    <p>Laps</p>
+    <div class="bar"><div class="fill" style="width:${laps}%"></div></div>
+
+    <p>Pace</p>
+    <div class="bar"><div class="fill" style="width:${pace}%"></div></div>
+  `;
+}
+
+/* CLOSE POPUP */
+document.getElementById("popup").onclick=()=>{
+  document.getElementById("popup").style.display="none";
+};
 </script>
 
 </body>
