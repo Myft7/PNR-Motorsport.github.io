@@ -1,272 +1,45 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>PNR Motorsport</title>
-
-<style>
-body {
-  margin:0;
-  font-family:Arial;
-  background:black;
-  color:white;
-  overflow-x:hidden;
-}
-
-/* GRID BACKGROUND */
-body::before {
-  content:"";
-  position:fixed;
-  width:200%;
-  height:200%;
-  background:
-    linear-gradient(rgba(59,91,255,0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59,91,255,0.08) 1px, transparent 1px);
-  background-size:60px 60px;
-  animation:moveGrid 40s linear infinite, pulse 4s ease-in-out infinite;
-  z-index:-2;
-}
-
-@keyframes moveGrid {
-  from {transform:translate(0,0);}
-  to {transform:translate(-300px,-300px);}
-}
-
-@keyframes pulse {
-  0%,100% {opacity:0.6;}
-  50% {opacity:1;}
-}
-
-/* NAV */
-nav {
-  display:flex;
-  justify-content:space-between;
-  padding:20px 60px;
-  background:rgba(0,0,0,0.7);
-  backdrop-filter:blur(10px);
-  position:sticky;
-  top:0;
-}
-
-nav ul {
-  display:flex;
-  gap:40px;
-  list-style:none;
-}
-
-nav li {
-  cursor:pointer;
-}
-
-nav li:hover {
-  color:#3b5bff;
-}
-
-.btn {
-  padding:10px 20px;
-  background:#3b5bff;
-  border-radius:6px;
-  text-decoration:none;
-  color:white;
-}
-
-/* HERO */
-.hero {
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding-left:80px;
-}
-
-.hero h1 {
-  font-size:70px;
-}
-
-/* SECTION */
-section {
-  padding:100px 20px;
-  text-align:center;
-}
-
-h2 {
-  color:#3b5bff;
-}
-
-/* DRIVER GRID */
-.driver-grid {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:20px;
-}
-
 /* DRIVER CARD */
-.driver {
+.driver-card {
   display:flex;
   align-items:center;
   gap:15px;
-  background:#0a0f2a;
-  padding:15px 20px;
-  width:250px;
-  border-radius:10px;
+  background:rgba(10,15,42,0.8);
+  border:1px solid rgba(59,91,255,0.2);
+  padding:15px;
+  margin:10px auto;
+  width:320px;
+  border-radius:12px;
+  backdrop-filter:blur(10px);
   transition:0.3s;
   cursor:pointer;
 }
 
-.driver:hover {
-  transform:translateY(-5px) scale(1.05);
-  box-shadow:0 0 20px #3b5bff;
+/* HOVER */
+.driver-card:hover {
+  transform:translateY(-5px) scale(1.03);
+  box-shadow:0 0 20px rgba(59,91,255,0.6);
+  border:1px solid rgba(59,91,255,0.6);
 }
 
-/* PFP */
+/* PFP CLEAN */
 .pfp {
-  width:50px;
-  height:50px;
+  width:55px;
+  height:55px;
   border-radius:50%;
-  background:linear-gradient(135deg,#1a2cff,#0a0f2a);
+  background:linear-gradient(135deg,#2a2a2a,#111);
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:22px;
 }
 
 .pfp::after {
   content:"👤";
+  opacity:0.7;
 }
 
-/* POPUP */
-.popup {
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.8);
-  display:none;
-  justify-content:center;
-  align-items:center;
+/* TEXT */
+.info {
+  text-align:left;
+  font-size:14px;
 }
-
-.popup-content {
-  background:#0a0f2a;
-  padding:30px;
-  border-radius:10px;
-  width:300px;
-  text-align:center;
-}
-
-/* STATS BAR */
-.bar {
-  background:#222;
-  border-radius:5px;
-  margin:10px 0;
-}
-
-.fill {
-  background:#3b5bff;
-  height:10px;
-  border-radius:5px;
-}
-
-</style>
-</head>
-
-<body>
-
-<nav>
-  <div><b>PNR MOTORSPORT</b></div>
-
-  <ul>
-    <li onclick="go('home')">HOME</li>
-    <li onclick="go('teams')">TEAMS</li>
-    <li onclick="go('contact')">CONTACT</li>
-  </ul>
-
-  <a class="btn" href="https://discord.gg/TXhqstemqD">JOIN</a>
-</nav>
-
-<!-- HERO -->
-<div class="hero" id="home">
-  <h1>PNR MOTORSPORT</h1>
-  <p>Elite Simracing Team</p>
-</div>
-
-<!-- TEAMS -->
-<section id="teams">
-  <h2>Teams</h2>
-
-  <div class="driver-grid">
-
-    <div class="driver" onclick="openProfile('Noah Sejay','ES',80,90,70)">
-      <div class="pfp"></div>
-      <div>
-        <b>Noah Sejay</b><br>
-        <span class="flag" data-country="ES"></span>
-      </div>
-    </div>
-
-    <div class="driver" onclick="openProfile('Driver 2','DE',60,70,50)">
-      <div class="pfp"></div>
-      <div>
-        <b>Driver 2</b><br>
-        <span class="flag" data-country="DE"></span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact</h2>
-  <a class="btn" href="https://www.tiktok.com/@gt3hub_motorsport">TikTok</a>
-  <a class="btn" href="https://www.instagram.com/pnrmotorsport2026/">Instagram</a>
-</section>
-
-<!-- POPUP -->
-<div class="popup" id="popup">
-  <div class="popup-content" id="popupContent"></div>
-</div>
-
-<script>
-function go(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-
-/* FLAG SYSTEM */
-document.querySelectorAll(".flag").forEach(el=>{
-  let code = el.dataset.country.toLowerCase();
-  el.textContent = String.fromCodePoint(
-    ...[...code].map(c => 127397 + c.charCodeAt())
-  );
-});
-
-/* PROFILE POPUP */
-function openProfile(name,country,wins,laps,pace){
-  let flag = String.fromCodePoint(
-    ...[...country.toLowerCase()].map(c => 127397 + c.charCodeAt())
-  );
-
-  document.getElementById("popup").style.display="flex";
-  document.getElementById("popupContent").innerHTML=`
-    <h2>${name}</h2>
-    <p>${flag}</p>
-
-    <p>Wins</p>
-    <div class="bar"><div class="fill" style="width:${wins}%"></div></div>
-
-    <p>Laps</p>
-    <div class="bar"><div class="fill" style="width:${laps}%"></div></div>
-
-    <p>Pace</p>
-    <div class="bar"><div class="fill" style="width:${pace}%"></div></div>
-  `;
-}
-
-/* CLOSE POPUP */
-document.getElementById("popup").onclick=()=>{
-  document.getElementById("popup").style.display="none";
-};
-</script>
-
-</body>
-</html>
