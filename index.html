@@ -12,36 +12,24 @@
       overflow-x: hidden;
     }
 
-    /* ANIMIERTER GRID BACKGROUND */
-    body::before {
-      content: "";
+    .video-bg {
       position: fixed;
-      width: 200%;
-      height: 200%;
-      background:
-        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 50px 50px;
-      animation: moveBg 25s linear infinite;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
       z-index: -2;
     }
 
-    @keyframes moveBg {
-      from { transform: translate(0,0); }
-      to { transform: translate(-200px,-200px); }
-    }
-
-    /* GLOW OVERLAY */
     body::after {
       content: "";
       position: fixed;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, #0a2cff33, transparent);
+      background: radial-gradient(circle, #0a2cff33, black);
       z-index: -1;
     }
 
-    /* NAVBAR */
     nav {
       display: flex;
       justify-content: space-between;
@@ -51,13 +39,6 @@
       background: rgba(0,0,0,0.6);
       position: sticky;
       top: 0;
-      z-index: 10;
-    }
-
-    nav .logo {
-      font-weight: bold;
-      font-size: 22px;
-      letter-spacing: 2px;
     }
 
     nav ul {
@@ -68,110 +49,39 @@
 
     nav ul li {
       cursor: pointer;
-      position: relative;
     }
 
-    nav ul li::after {
-      content: "";
-      position: absolute;
-      width: 0%;
-      height: 2px;
-      background: #3b5bff;
-      bottom: -5px;
-      left: 0;
-      transition: 0.3s;
-    }
-
-    nav ul li:hover::after {
-      width: 100%;
+    nav ul li:hover {
+      color: #3b5bff;
     }
 
     .discord-btn {
       background: linear-gradient(90deg, #0a2cff, #3b5bff);
-      padding: 12px 25px;
+      padding: 10px 20px;
       border-radius: 6px;
       text-decoration: none;
       color: white;
-      font-weight: bold;
-      transition: 0.3s;
     }
 
-    .discord-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #3b5bff;
-    }
-
-    /* HERO */
     .hero {
-      padding: 150px 80px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 80px;
     }
 
     .hero h1 {
       font-size: 70px;
-      margin-bottom: 20px;
-      animation: fadeUp 1.5s ease;
     }
 
-    .hero p {
-      max-width: 500px;
-      opacity: 0.8;
-      animation: fadeUp 2s ease;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .join-btn {
-      display: inline-block;
-      margin-top: 40px;
-      padding: 15px 35px;
-      background: #3b5bff;
-      border-radius: 6px;
-      text-decoration: none;
-      color: white;
-      transition: 0.3s;
-    }
-
-    .join-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px #3b5bff;
-    }
-
-    /* JOIN SECTION BIG */
-    .join-section {
-      height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle, #0a2cff22, black);
-    }
-
-    .join-section h1 {
-      font-size: 60px;
-      margin-bottom: 30px;
-    }
-
-    .apply-btn {
-      padding: 20px 40px;
-      background: white;
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-
-    .apply-btn:hover {
-      transform: scale(1.1);
-    }
-
-    /* CARDS */
     section {
       padding: 100px 20px;
       text-align: center;
+    }
+
+    h2 {
+      color: #3b5bff;
     }
 
     .card {
@@ -188,43 +98,77 @@
       box-shadow: 0 0 25px #3b5bff;
     }
 
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      background: #3b5bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
   </style>
 </head>
 
 <body>
 
+<video autoplay muted loop class="video-bg">
+  <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+</video>
+
 <nav>
-  <div class="logo">PNR MOTORSPORT</div>
+  <div><b>PNR MOTORSPORT</b></div>
 
   <ul>
-    <li>HOME</li>
-    <li>TEAM</li>
-    <li>CONTACT</li>
+    <li onclick="scrollToSection('home')">HOME</li>
+    <li onclick="scrollToSection('team')">TEAM</li>
+    <li onclick="scrollToSection('contact')">CONTACT</li>
   </ul>
 
-  <a class="discord-btn" href="https://discord.gg/TXhqstemqD" target="_blank">
-    JOIN DISCORD
-  </a>
+  <a class="discord-btn" href="https://discord.gg/TXhqstemqD">JOIN</a>
 </nav>
 
-<div class="hero">
-  <h1>GROWING BEYOND OURSELVES</h1>
-  <p>We aim for performance, growth and a strong simracing community.</p>
-
-  <a class="join-btn" href="https://discord.gg/TXhqstemqD">JOIN NOW</a>
+<!-- HERO -->
+<div class="hero" id="home">
+  <h1>THE ONLY WAY IS UP</h1>
+  <p>PNR Motorsport – pushing limits in simracing.</p>
 </div>
 
-<div class="join-section">
-  <h1>JOIN THE TEAM</h1>
-  <a class="apply-btn" href="https://discord.gg/TXhqstemqD">
-    APPLY ON DISCORD
-  </a>
-</div>
-
+<!-- RACING INFOS -->
 <section>
-  <h2>TEAM</h2>
+  <h2>Racing Infos</h2>
+  <div class="card">Assetto Corsa Competizione (ACC)</div>
+  <div class="card">Le Mans Ultimate (LMU)</div>
+  <div class="card">Langstrecken Events</div>
+</section>
+
+<!-- PARTNER -->
+<section>
+  <h2>Partnerschaften</h2>
+  <div class="card">Liqui Moly</div>
+  <div class="card">Weitere folgen...</div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <h2>Team</h2>
   <div class="card">Owner: Noah Sejay</div>
 </section>
+
+<!-- CONTACT (MIT SOCIALS) -->
+<section id="contact">
+  <h2>Contact / Socials</h2>
+
+  <a class="btn" href="https://discord.gg/TXhqstemqD">Discord</a>
+  <a class="btn" href="https://www.tiktok.com/@gt3hub_motorsport">TikTok</a>
+  <a class="btn" href="https://www.instagram.com/pnrmotorsport2026/">Instagram</a>
+</section>
+
+<script>
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+</script>
 
 </body>
 </html>
