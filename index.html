@@ -66,7 +66,7 @@ nav li:hover{
   align-items:center;
 }
 
-/* HERO ANIMATION START */
+/* HERO ANIMATION */
 .hero h1{
   font-size:90px;
   font-weight:900;
@@ -96,8 +96,19 @@ nav li:hover{
   }
 }
 
+/* 🔥 PNR GRADIENT */
 .pnr{
-  color:#3b5bff;
+  background:linear-gradient(90deg,#3b5bff,#00ff88,#3b5bff);
+  background-size:200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove{
+  to{
+    background-position:200%;
+  }
 }
 
 /* INFO SECTION */
@@ -207,6 +218,21 @@ section{
 
 .btn:hover{
   transform:scale(1.05);
+}
+
+/* FOOTER LINKS */
+footer a{
+  display:block;
+  color:white;
+  text-decoration:none;
+  margin:5px 0;
+  opacity:0.6;
+  transition:0.3s;
+}
+
+footer a:hover{
+  opacity:1;
+  transform:translateX(5px);
 }
 
 /* FOOTER */
@@ -370,11 +396,9 @@ PNR MOTORSPORT
 
 <div>
 <h3>Social</h3>
-
-<a href="https://discord.gg/TXhqstemqD" target="_blank">Discord</a><br>
-<a href="https://www.instagram.com/pnrmotorsport2026/" target="_blank">Instagram</a><br>
+<a href="https://discord.gg/TXhqstemqD" target="_blank">Discord</a>
+<a href="https://www.instagram.com/pnrmotorsport2026/" target="_blank">Instagram</a>
 <a href="https://www.tiktok.com/@gt3hub_motorsport" target="_blank">TikTok</a>
-
 </div>
 
 <div>
